@@ -1,39 +1,39 @@
-// Import React, React Router, and necessary hooks
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-
 import './App.css';
 
-// Import CSS
-import './App.css';
-
-// Import Pages
-import Home from './pages/Home';
-import About from './pages/About';
-import Contact from './pages/Contact';
+// Dummy About and Contact Components
+const About = () => <div><h2>About Page</h2><p>Welcome to the About page!</p></div>;
+const Contact = () => <div><h2>Contact Page</h2><p>Feel free to reach out!</p></div>;
 
 function App() {
-  // Task Manager State
+  // State for managing tasks
   const [tasks, setTasks] = useState([]);
   const [task, setTask] = useState('');
 
-  // Add Task Function
+  // Function to add a new task
   const addTask = () => {
     if (task) {
       setTasks([...tasks, task]);
-      setTask('');  // Clear the input
+      setTask(''); // Clear input field
     }
   };
 
-  // Effect Hook: Logs tasks when updated
+  // Function to delete a task
+  const deleteTask = (index) => {
+    const updatedTasks = tasks.filter((_, i) => i !== index);
+    setTasks(updatedTasks); // Update tasks state without the deleted task
+  };
+
+  // Effect to log tasks whenever updated
   useEffect(() => {
     console.log('Task list updated:', tasks);
-  }, [tasks]);  // Runs when tasks change
+  }, [tasks]); // Triggered whenever tasks change
 
   return (
     <Router>
-      <div>
-        {/* Navigation Menu */}
+      <div className="App">
+        {/* Navigation Bar */}
         <nav>
           <ul>
             <li><Link to="/">Home</Link></li>
@@ -42,23 +42,31 @@ function App() {
           </ul>
         </nav>
 
-        {/* Page Routes */}
+        {/* Routes for different pages */}
         <Routes>
           <Route path="/" element={
             <div>
-              <Home />
-              <h2>Task Manager</h2>
-              <input 
-                type="text" 
-                value={task} 
-                onChange={(e) => setTask(e.target.value)} 
-                placeholder="Enter a new task" 
-              />
-              <button onClick={addTask}>Add Task</button>
+              <h1>Trueblues Task Manager</h1>
+              {/* Task Input */}
+              <div className="task-input-container">
+                <input
+                  type="text"
+                  value={task}
+                  onChange={(e) => setTask(e.target.value)}
+                  placeholder="Enter a new task"
+                />
+                <button onClick={addTask}>Add Task</button>
+              </div>
 
-              <ul>
+              {/* Task List */}
+              <ul className="task-list">
                 {tasks.map((t, index) => (
-                  <li key={index}>{t}</li>
+                  <li key={index} className="task-item">
+                    {t}
+                    <button onClick={() => deleteTask(index)} className="delete-button">
+                      Delete
+                    </button>
+                  </li>
                 ))}
               </ul>
             </div>

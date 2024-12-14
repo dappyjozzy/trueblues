@@ -12,10 +12,26 @@
     padding: 20px;
   }
   
-  /* Navigation styles */
+  /* Main App container styles */
+  .App {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  h1 {
+    color: #007acc;
+    margin-bottom: 1em;
+  }
+  
+  /* Navigation Bar Styles */
   nav {
     background: #007acc;
-    padding: 1em;
+    padding: 10px;
     text-align: center;
   }
   
@@ -40,23 +56,18 @@
     color: #ffcc00;
   }
   
-  /* Page section styles */
-  h1, h2 {
-    text-align: center;
-    margin-bottom: 1em;
+  /* Task Input section */
+  .task-input-container {
+    margin-bottom: 20px;
   }
   
-  main {
-    padding: 2em;
-    text-align: center;
-  }
-  
-  /* Task manager styles */
   input[type="text"] {
-    width: 60%;
+    width: 70%;
     padding: 10px;
-    margin: 10px;
     font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
   }
   
   button {
@@ -73,27 +84,39 @@
     background: #005ea6;
   }
   
-  /* Task list styles */
-  ul {
+  /* Task List Styles */
+  ul.task-list {
     list-style: none;
     padding: 0;
   }
   
-  li {
+  li.task-item {
     background: #e0e7ff;
-    margin: 5px 0;
+    margin: 10px 0;
     padding: 10px;
     font-size: 18px;
     border-radius: 5px;
-    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
   
-  /* Footer styles */
-  footer {
-    background: #007acc;
+  .delete-button {
+    padding: 5px 10px;
+    font-size: 14px;
+    background-color: red;
     color: white;
-    text-align: center;
-    padding: 1em;
-    margin-top: 2em;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .delete-button:hover {
+    background-color: darkred;
+  }
+  
+  /* Page content styles */
+  h2 {
+    color: #007acc;
   }
   
